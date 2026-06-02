@@ -274,9 +274,9 @@
             <div class="h-14.5 hidden lg:block"></div>
         @endif
 
-        <div class="fixed bottom-6 left-0 right-0 flex flex-col items-center justify-center gap-2 pointer-events-none">
+        <div class="fixed bottom-10 sm:bottom-8 left-0 right-0 flex flex-col items-center justify-center gap-2 pointer-events-none z-50">
             <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">An Initiative By</span>
-            <img src="{{ asset('swaaha-logo.png') }}" alt="Swaaha Logo" class="h-6 object-contain opacity-75 grayscale transition-all">
+            <img src="{{ asset('swaaha-logo.png') }}" alt="Swaaha Logo" class="h-6 object-contain opacity-80">
         </div>
     </body>
 </html>
