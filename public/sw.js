@@ -22,6 +22,18 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
+    // For page navigations, go to the network first to handle redirects properly
+    if (event.request.mode === 'navigate') {
+        event.respondWith(
+            fetch(event.request).catch(() => {
+                // If offline, try to return a cached index or offline page
+                return caches.match('./');
+            })
+        );
+        return;
+    }
+
+    // For assets (images, css, js), use cache-first
     event.respondWith(
         caches.match(event.request)
             .then(response => {
@@ -30,7 +42,7 @@ self.addEventListener('fetch', event => {
                     return response;
                 }
                 return fetch(event.request).catch(() => {
-                    // Fallback to a cached offline page if we had one, otherwise do nothing
+                    // Ignore fetch errors for assets
                 });
             })
     );

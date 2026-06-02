@@ -261,6 +261,20 @@
                     }, 3000);
                 });
             });
+
+            // Social Sharing API
+            document.getElementById('shareButton').addEventListener('click', function() {
+                if (navigator.share) {
+                    const text = `My daily Carbon Footprint is ${carbonStat.innerText} and Plastic Waste is ${plasticStat.innerText}! I'm tracking my ecological debt on Green Footprints.`;
+                    navigator.share({
+                        title: 'My Green Footprint',
+                        text: text,
+                        url: window.location.origin
+                    }).catch(console.error);
+                } else {
+                    alert('Sharing is not supported on this browser.');
+                }
+            });
         });
     </script>
     </div>

@@ -4,6 +4,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    if (\Illuminate\Support\Facades\Auth::check()) {
+        return redirect()->route('dashboard');
+    }
     return redirect()->route('login');
 });
 
@@ -22,6 +25,9 @@ Route::middleware('auth')->group(function () {
     
     Route::middleware('admin')->prefix('admin')->group(function () {
         Route::get('/dashboard', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin.dashboard');
+        Route::get('/users', [\App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
+        Route::get('/leaderboard', [\App\Http\Controllers\AdminController::class, 'leaderboard'])->name('admin.leaderboard');
+        Route::get('/analytics', [\App\Http\Controllers\AdminController::class, 'analytics'])->name('admin.analytics');
     });
 });
 
