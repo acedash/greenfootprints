@@ -29,10 +29,8 @@
         <style>
             html, body {
                 overscroll-behavior: none;
-                position: fixed;
                 width: 100%;
-                height: 100%;
-                overflow: hidden;
+                min-height: 100%;
             }
             @keyframes blob {
                 0% { transform: translate(0px, 0px) scale(1); }
@@ -48,13 +46,13 @@
             .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         </style>
     </head>
-    <body class="font-sans text-gray-900 antialiased w-full h-full flex justify-center items-center sm:p-4 relative bg-slate-50">
+    <body class="font-sans text-gray-900 antialiased w-full min-h-screen flex justify-center items-start sm:items-center sm:p-4 relative bg-slate-50 py-8 sm:py-4">
         <!-- Animated Background Elements -->
-        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-emerald-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob"></div>
-        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-2000"></div>
-        <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-4000"></div>
+        <div class="fixed top-[-10%] left-[-10%] w-96 h-96 bg-emerald-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob"></div>
+        <div class="fixed top-[20%] right-[-10%] w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-2000"></div>
+        <div class="fixed bottom-[-20%] left-[20%] w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-4000"></div>
 
-        <div class="w-full max-w-[420px] h-full sm:h-auto sm:max-h-[95vh] overflow-y-auto no-scrollbar bg-white/40 backdrop-blur-2xl rounded-none sm:rounded-[2rem] border-0 sm:border sm:border-white/60 sm:shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] relative z-10 flex flex-col justify-center p-8 sm:p-10 transition-all duration-300 sm:hover:shadow-[0_8px_40px_0_rgba(31,38,135,0.1)]">
+        <div class="w-full max-w-[420px] bg-white/60 backdrop-blur-2xl rounded-none sm:rounded-[2rem] border-0 sm:border sm:border-white/60 sm:shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] relative z-10 flex flex-col p-8 sm:p-10 transition-all duration-300 sm:hover:shadow-[0_8px_40px_0_rgba(31,38,135,0.1)]">
             
             <div class="text-center mb-10 flex flex-col items-center">
                 <div class="w-24 h-24 bg-white rounded-[1.25rem] shadow-sm flex items-center justify-center mb-6 p-2 border border-white/50">
@@ -65,6 +63,14 @@
                 </h1>
                 <p class="text-slate-500 text-sm font-medium">Your step towards a sustainable future.</p>
             </div>
+
+            {{-- Show all validation errors as an alert banner --}}
+            @if ($errors->any())
+                <div class="mb-6 bg-red-50 border border-red-200 text-red-700 rounded-2xl px-5 py-4 text-sm font-semibold flex items-start gap-3">
+                    <svg class="w-5 h-5 shrink-0 mt-0.5 text-red-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01M12 3a9 9 0 110 18A9 9 0 0112 3z"/></svg>
+                    <span>{{ $errors->first() }}</span>
+                </div>
+            @endif
 
             <div class="w-full">
                 {{ $slot }}
