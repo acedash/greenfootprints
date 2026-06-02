@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
@@ -26,14 +26,14 @@
                 });
             }
         </script>
-    </head>
-    <body class="font-sans antialiased h-[100dvh] w-full flex justify-center items-center sm:p-4 relative overflow-hidden bg-slate-50">
-        <!-- Animated Background Elements -->
-        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-emerald-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob"></div>
-        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-2000"></div>
-        <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-4000"></div>
-        
         <style>
+            html, body {
+                overscroll-behavior: none;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
             @keyframes blob {
                 0% { transform: translate(0px, 0px) scale(1); }
                 33% { transform: translate(30px, -50px) scale(1.1); }
@@ -53,6 +53,12 @@
                 scrollbar-width: none;  /* Firefox */
             }
         </style>
+    </head>
+    <body class="font-sans antialiased w-full flex justify-center items-center sm:p-4 relative bg-slate-50">
+        <!-- Animated Background Elements -->
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-emerald-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob"></div>
+        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-4000"></div>
 
         <div class="w-full max-w-[480px] h-[100dvh] sm:h-[85vh] bg-white/80 backdrop-blur-xl sm:rounded-[2.5rem] shadow-none sm:shadow-[0_20px_50px_rgba(8,_112,_184,_0.15)] relative z-10 flex flex-col overflow-hidden border border-white/50">
             <!-- Page Content (scrollable) -->

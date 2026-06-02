@@ -3,7 +3,7 @@
         <!-- Splash Screen -->
         <div x-show="showSplash" x-transition.opacity.duration.800ms class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-white/60 backdrop-blur-3xl">
             <div class="w-32 h-32 rounded-[2rem] overflow-hidden flex items-center justify-center mb-8 shadow-2xl shadow-emerald-500/40 animate-pulse transition-transform hover:scale-110 duration-500 border border-white/50">
-                <img src="/logo.jpeg" alt="Green Footprints Logo" class="w-full h-full object-cover">
+                <img src="{{ asset('logo.jpeg') }}" alt="Green Footprints Logo" class="w-full h-full object-cover">
             </div>
             <h1 class="text-4xl font-black text-gray-800 tracking-tight text-center">Green<br><span class="text-emerald-500">Footprints</span></h1>
             <p class="text-gray-500 font-bold mt-4 tracking-widest uppercase text-sm">The Sprouting Step</p>

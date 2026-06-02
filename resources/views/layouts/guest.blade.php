@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
@@ -26,15 +26,14 @@
                 });
             }
         </script>
-    </head>
-    <body class="font-sans text-gray-900 antialiased min-h-screen flex justify-center items-center p-4 relative overflow-hidden bg-slate-50">
-        
-        <!-- Animated Background Elements -->
-        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-emerald-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob"></div>
-        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-2000"></div>
-        <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-4000"></div>
-        
         <style>
+            html, body {
+                overscroll-behavior: none;
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
             @keyframes blob {
                 0% { transform: translate(0px, 0px) scale(1); }
                 33% { transform: translate(30px, -50px) scale(1.1); }
@@ -48,6 +47,12 @@
             .no-scrollbar::-webkit-scrollbar { display: none; }
             .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         </style>
+    </head>
+    <body class="font-sans text-gray-900 antialiased w-full flex justify-center items-center p-4 relative bg-slate-50">
+        <!-- Animated Background Elements -->
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-emerald-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob"></div>
+        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-4000"></div>
 
         <div class="w-full max-w-[420px] max-h-[95vh] overflow-y-auto no-scrollbar bg-white/40 backdrop-blur-2xl rounded-[2rem] border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] relative z-10 flex flex-col p-8 sm:p-10 transition-all duration-300 hover:shadow-[0_8px_40px_0_rgba(31,38,135,0.1)]">
             
