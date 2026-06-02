@@ -265,11 +265,14 @@
             // Social Sharing API
             document.getElementById('shareButton').addEventListener('click', function() {
                 if (navigator.share) {
-                    const text = `My daily Carbon Footprint is ${carbonStat.innerText} and Plastic Waste is ${plasticStat.innerText}! I'm tracking my ecological debt on Green Footprints.`;
+                    const carbonText = document.getElementById('carbonStat') ? document.getElementById('carbonStat').innerText : '?';
+                    const plasticText = document.getElementById('plasticStat') ? document.getElementById('plasticStat').innerText : '?';
+                    const text = `My daily Carbon Footprint is ${carbonStat.innerText}kg and Plastic Waste is ${plasticStat.innerText}kg! I'm tracking my ecological debt on Green Footprints.`;
+                    const appUrl = '{{ rtrim(config("app.url"), "/") }}';
                     navigator.share({
                         title: 'My Green Footprint',
                         text: text,
-                        url: window.location.origin
+                        url: appUrl
                     }).catch(console.error);
                 } else {
                     alert('Sharing is not supported on this browser.');
