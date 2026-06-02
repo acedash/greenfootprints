@@ -5,12 +5,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     if (\Illuminate\Support\Facades\Auth::check()) {
+        if (\Illuminate\Support\Facades\Auth::user()->is_admin) {
+            return redirect()->route('admin.dashboard');
+        }
         return redirect()->route('dashboard');
     }
     return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
+    if (\Illuminate\Support\Facades\Auth::user()->is_admin) {
+        return redirect()->route('admin.dashboard');
+    }
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
