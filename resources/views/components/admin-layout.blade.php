@@ -67,6 +67,11 @@
                         Logout
                     </button>
                 </form>
+
+                <div class="mt-6 pt-6 border-t border-slate-200/50 flex flex-col items-center justify-center gap-2">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">An Initiative By</span>
+                    <img src="{{ asset('swaaha-logo.png') }}" alt="Swaaha Logo" class="h-6 object-contain opacity-75 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
+                </div>
             </div>
         </aside>
 

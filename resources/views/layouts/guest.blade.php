@@ -72,8 +72,13 @@
                 </div>
             @endif
 
-            <div class="w-full">
+            <div class="w-full mb-6">
                 {{ $slot }}
+            </div>
+
+            <div class="mt-auto pt-6 border-t border-slate-200/50 flex flex-col items-center justify-center gap-2">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">An Initiative By</span>
+                <img src="{{ asset('swaaha-logo.png') }}" alt="Swaaha Logo" class="h-8 object-contain">
             </div>
         </div>
     </body>
