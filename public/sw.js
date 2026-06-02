@@ -1,4 +1,4 @@
-const CACHE_NAME = 'green-footprints-v4';
+const CACHE_NAME = 'green-footprints-v5';
 const urlsToCache = [
     './',
     './logo.jpeg',
@@ -21,22 +21,25 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
-    // For page navigations, bypass the strict request object and fetch the URL directly.
-    // This allows the browser to naturally follow redirects (like / -> /login) without ERR_FAILED.
+    // Always bypass non-GET requests (POST, PUT, DELETE etc.) so forms work correctly
+    if (event.request.method !== 'GET') {
+        return; // Let browser handle it natively
+    }
+
+    // For GET page navigations, use network-first so redirects (e.g. / -> /login) work
     if (event.request.mode === 'navigate') {
         event.respondWith(
-            fetch(event.request.url).catch(() => {
+            fetch(event.request).catch(() => {
                 return caches.match('./');
             })
         );
         return;
     }
 
-    // For assets (images, css, js), use cache-first
+    // For GET assets (images, css, js), use cache-first
     event.respondWith(
         caches.match(event.request)
             .then(response => {
-                // Cache hit - return response
                 if (response) {
                     return response;
                 }
