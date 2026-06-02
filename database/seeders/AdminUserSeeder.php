@@ -14,10 +14,13 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
+        // First, revoke admin access from ALL current users
+        User::where('is_admin', true)->update(['is_admin' => false]);
+
         User::firstOrCreate(
-            ['email' => 'mailtokhanasrar@gmail.com'],
+            ['email' => 'admin@green.in'],
             [
-                'name' => 'Khan Asrar',
+                'name' => 'admin',
                 'password' => Hash::make('password123'), // Change this if you want a default password
                 'is_admin' => true,
                 'city' => 'Srinagar',
