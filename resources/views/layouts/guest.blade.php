@@ -52,7 +52,7 @@
         <div class="fixed top-[20%] right-[-10%] w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-2000"></div>
         <div class="fixed bottom-[-20%] left-[20%] w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-4000"></div>
 
-        <div class="w-full h-[100dvh] sm:h-auto sm:max-h-[90vh] max-w-[420px] bg-white/60 backdrop-blur-2xl rounded-none sm:rounded-[2rem] border-0 sm:border sm:border-white/60 sm:shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] relative z-10 flex flex-col p-6 sm:p-10 transition-all duration-300 sm:hover:shadow-[0_8px_40px_0_rgba(31,38,135,0.1)]">
+        <div class="w-full h-full max-h-[100dvh] sm:h-auto sm:max-h-[90vh] max-w-[420px] bg-white/60 backdrop-blur-2xl rounded-none sm:rounded-[2rem] border-0 sm:border sm:border-white/60 sm:shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] relative z-10 flex flex-col p-6 pb-8 sm:p-10 transition-all duration-300 sm:hover:shadow-[0_8px_40px_0_rgba(31,38,135,0.1)]">
             
             <div class="text-center mb-6 shrink-0 flex flex-col items-center">
                 <div class="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-[1.25rem] shadow-sm flex items-center justify-center mb-4 sm:mb-6 p-2 border border-white/50">
@@ -76,9 +76,9 @@
                 {{ $slot }}
             </div>
 
-            <div class="mt-auto pt-4 shrink-0 border-t border-slate-200/50 flex flex-col items-center justify-center gap-2">
-                <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">An Initiative By</span>
-                <img src="{{ asset('swaaha-logo.png') }}" alt="Swaaha Logo" class="h-6 sm:h-8 object-contain">
+            <div class="mt-auto pt-4 pb-2 sm:pb-0 shrink-0 border-t border-slate-200/50 flex flex-col items-center justify-center gap-2">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">An Initiative By</span>
+                <img src="{{ asset('swaaha-logo.png') }}" alt="Swaaha Logo" class="h-5 sm:h-6 object-contain opacity-80">
             </div>
         </div>
     </body>
