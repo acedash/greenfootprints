@@ -50,4 +50,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function footprints()
+    {
+        return $this->hasMany(FootprintRecord::class);
+    }
 }

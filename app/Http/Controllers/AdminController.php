@@ -28,14 +28,17 @@ class AdminController extends Controller
 
     public function users(Request $request)
     {
-        $users = User::orderBy('created_at', 'desc')->paginate(20);
+        $users = User::withSum('footprints as total_carbon', 'carbon_kg')
+            ->withSum('footprints as trees_debt', 'trees_debt')
+            ->orderBy('created_at', 'desc')->paginate(20);
         return view('admin.users', compact('users'));
     }
 
     public function leaderboard(Request $request)
     {
-        // Get the top 50 users based on total_carbon (lowest is best, but we'll show lowest carbon footprints as top, wait actually in this app, saving carbon debt is good, but wait: the user's dashboard shows tracking of carbon *emitted*. So leaderboard usually ranks by lowest emissions OR highest trees debt covered. The current leaderboard controller ranks by `total_carbon` ASC).
-        $users = User::orderBy('total_carbon', 'asc')->paginate(50);
+        $users = User::withSum('footprints as total_carbon', 'carbon_kg')
+            ->withSum('footprints as trees_debt', 'trees_debt')
+            ->orderBy('total_carbon', 'asc')->paginate(50);
         return view('admin.leaderboard', compact('users'));
     }
 
@@ -44,13 +47,13 @@ class AdminController extends Controller
         // Get daily footprint data for the last 30 days
         $startDate = now()->subDays(30)->startOfDay();
         
-        $dailyStats = FootprintRecord::where('date', '>=', $startDate)
+        $dailyStats = FootprintRecord::where('created_at', '>=', $startDate)
             ->select(
-                'date',
+                DB::raw('DATE(created_at) as date'),
                 DB::raw('SUM(carbon_kg) as total_carbon'),
                 DB::raw('SUM(plastic_kg) as total_plastic')
             )
-            ->groupBy('date')
+            ->groupBy(DB::raw('DATE(created_at)'))
             ->orderBy('date', 'asc')
             ->get();
 
@@ -60,10 +63,24 @@ class AdminController extends Controller
         $carbonData = $dailyStats->pluck('total_carbon');
         $plasticData = $dailyStats->pluck('total_plastic');
 
-        // Transport Mode breakdown
-        $transportStats = FootprintRecord::select('transport_mode', DB::raw('count(*) as count'))
-            ->groupBy('transport_mode')
-            ->get();
+        // Transport Mode breakdown mapping
+        $transportStats = FootprintRecord::select('transport_mode_factor', DB::raw('count(*) as count'))
+            ->groupBy('transport_mode_factor')
+            ->get()
+            ->map(function($stat) {
+                $factor = (string) $stat->transport_mode_factor;
+                if ($factor === '0.192') $mode = 'Petrol/Diesel Car';
+                elseif ($factor === '0.105') $mode = 'Public Bus';
+                elseif ($factor === '0.06') $mode = 'Two-Wheeler';
+                elseif ($factor === '0.04') $mode = 'Electric Vehicle';
+                elseif ($factor === '0') $mode = 'Walking/Cycling';
+                else $mode = 'Other';
+                
+                return (object) [
+                    'transport_mode' => $mode,
+                    'count' => $stat->count
+                ];
+            });
 
         return view('admin.analytics', compact('labels', 'carbonData', 'plasticData', 'transportStats'));
     }
