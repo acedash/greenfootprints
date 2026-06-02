@@ -1,17 +1,22 @@
-const CACHE_NAME = 'green-footprints-v1';
+const CACHE_NAME = 'green-footprints-v2';
 const urlsToCache = [
-    '/',
-    '/login',
-    '/register',
-    '/logo.jpeg',
-    '/offline'
+    './',
+    './logo.jpeg',
+    './manifest.json'
 ];
 
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => {
-                return cache.addAll(urlsToCache);
+                // Use catch to prevent a single 404 from failing the entire install
+                return Promise.all(
+                    urlsToCache.map(url => {
+                        return cache.add(url).catch(error => {
+                            console.error('Failed to cache:', url, error);
+                        });
+                    })
+                );
             })
     );
 });
