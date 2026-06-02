@@ -46,15 +46,15 @@
             .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         </style>
     </head>
-    <body class="font-sans text-gray-900 antialiased w-full h-[100dvh] overflow-hidden flex justify-center items-start sm:items-center sm:p-4 relative bg-slate-50">
+    <body class="font-sans text-gray-900 antialiased w-full min-h-screen flex justify-center items-start sm:items-center p-0 sm:p-4 relative bg-slate-50">
         <!-- Animated Background Elements -->
-        <div class="fixed top-[-10%] left-[-10%] w-96 h-96 bg-emerald-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob"></div>
-        <div class="fixed top-[20%] right-[-10%] w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-2000"></div>
-        <div class="fixed bottom-[-20%] left-[20%] w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-4000"></div>
+        <div class="fixed top-[-10%] left-[-10%] w-96 h-96 bg-emerald-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob pointer-events-none"></div>
+        <div class="fixed top-[20%] right-[-10%] w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-2000 pointer-events-none"></div>
+        <div class="fixed bottom-[-20%] left-[20%] w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-4000 pointer-events-none"></div>
 
-        <div class="w-full h-full max-h-[100dvh] sm:h-auto sm:max-h-[90vh] max-w-[420px] bg-white/60 backdrop-blur-2xl rounded-none sm:rounded-[2rem] border-0 sm:border sm:border-white/60 sm:shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] relative z-10 flex flex-col p-6 pb-8 sm:p-10 transition-all duration-300 sm:hover:shadow-[0_8px_40px_0_rgba(31,38,135,0.1)]">
+        <div class="w-full min-h-screen sm:min-h-0 sm:h-auto max-w-[420px] bg-white/60 backdrop-blur-2xl rounded-none sm:rounded-[2rem] border-0 sm:border sm:border-white/60 sm:shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] relative z-10 flex flex-col p-6 sm:p-10 transition-all duration-300 sm:hover:shadow-[0_8px_40px_0_rgba(31,38,135,0.1)]">
             
-            <div class="text-center mb-6 shrink-0 flex flex-col items-center">
+            <div class="text-center mb-6 shrink-0 flex flex-col items-center pt-4 sm:pt-0">
                 <div class="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-[1.25rem] shadow-sm flex items-center justify-center mb-4 sm:mb-6 p-2 border border-white/50">
                     <img src="{{ asset('logo.jpeg') }}" alt="Logo" class="w-full h-full object-contain mix-blend-multiply">
                 </div>
@@ -72,11 +72,11 @@
                 </div>
             @endif
 
-            <div class="w-full mb-6 overflow-y-auto no-scrollbar flex-1 min-h-0 -mx-2 px-2 pb-4">
+            <div class="w-full mb-6 flex-1 shrink-0">
                 {{ $slot }}
             </div>
 
-            <div class="mt-auto pt-4 pb-2 sm:pb-0 shrink-0 border-t border-slate-200/50 flex flex-col items-center justify-center gap-2">
+            <div class="mt-auto pt-4 pb-8 sm:pb-0 shrink-0 border-t border-slate-200/50 flex flex-col items-center justify-center gap-2">
                 <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">An Initiative By</span>
                 <img src="{{ asset('swaaha-logo.png') }}" alt="Swaaha Logo" class="h-5 sm:h-6 object-contain opacity-80">
             </div>
