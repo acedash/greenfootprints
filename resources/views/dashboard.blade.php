@@ -7,6 +7,11 @@
             </div>
             <h1 class="text-4xl font-black text-gray-800 tracking-tight text-center">Green<br><span class="text-emerald-500">Footprints</span></h1>
             <p class="text-gray-500 font-bold mt-4 tracking-widest uppercase text-sm">The Sprouting Step</p>
+
+            <div class="absolute bottom-10 left-0 right-0 flex flex-col items-center justify-center gap-2">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">An Initiative By</span>
+                <img src="{{ asset('swaaha-logo.png') }}" alt="Swaaha Logo" class="h-6 object-contain opacity-80">
+            </div>
         </div>
 
         <!-- Main Content -->
