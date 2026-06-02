@@ -59,13 +59,7 @@
                     </div>
                 </div>
                 <div class="text-right flex items-center gap-4">
-                    <div class="flex -space-x-3">
-                        <!-- Pseudo avatars to look like users -->
-                        <div class="w-10 h-10 rounded-full border-2 border-white bg-indigo-100 shadow-sm"></div>
-                        <div class="w-10 h-10 rounded-full border-2 border-white bg-emerald-100 shadow-sm"></div>
-                        <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-100 shadow-sm flex items-center justify-center text-[10px] font-bold text-slate-500">+{{ $stat->count }}</div>
-                    </div>
-                    <div class="ml-4 text-left min-w-[80px]">
+                    <div class="text-left min-w-[80px]">
                         <span class="font-black text-slate-800 text-2xl block">{{ $stat->count }}</span>
                         <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Users</span>
                     </div>
