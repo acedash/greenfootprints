@@ -21,3 +21,8 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Ignore SQLite databases
+*.sqlite
+/database/database.sqlite
+/database/*.sqlite
