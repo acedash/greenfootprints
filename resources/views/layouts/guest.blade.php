@@ -8,9 +8,9 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- PWA Meta Tags -->
-        <link rel="manifest" href="/manifest.json">
+        <link rel="manifest" href="{{ asset('manifest.json') }}">
         <meta name="theme-color" content="#10b981">
-        <link rel="apple-touch-icon" href="/logo.jpeg">
+        <link rel="apple-touch-icon" href="{{ asset('logo.jpeg') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -22,7 +22,7 @@
         <script>
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/sw.js');
+                    navigator.serviceWorker.register('{{ asset('sw.js') }}');
                 });
             }
         </script>
@@ -48,13 +48,13 @@
             .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         </style>
     </head>
-    <body class="font-sans text-gray-900 antialiased w-full flex justify-center items-center p-4 relative bg-slate-50">
+    <body class="font-sans text-gray-900 antialiased w-full h-full flex justify-center items-center sm:p-4 relative bg-slate-50">
         <!-- Animated Background Elements -->
         <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-emerald-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob"></div>
         <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-2000"></div>
         <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-4000"></div>
 
-        <div class="w-full max-w-[420px] max-h-[95vh] overflow-y-auto no-scrollbar bg-white/40 backdrop-blur-2xl rounded-[2rem] border border-white/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] relative z-10 flex flex-col p-8 sm:p-10 transition-all duration-300 hover:shadow-[0_8px_40px_0_rgba(31,38,135,0.1)]">
+        <div class="w-full max-w-[420px] h-full sm:h-auto sm:max-h-[95vh] overflow-y-auto no-scrollbar bg-white/40 backdrop-blur-2xl rounded-none sm:rounded-[2rem] border-0 sm:border sm:border-white/60 sm:shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] relative z-10 flex flex-col justify-center p-8 sm:p-10 transition-all duration-300 sm:hover:shadow-[0_8px_40px_0_rgba(31,38,135,0.1)]">
             
             <div class="text-center mb-10 flex flex-col items-center">
                 <div class="w-24 h-24 bg-white rounded-[1.25rem] shadow-sm flex items-center justify-center mb-6 p-2 border border-white/50">

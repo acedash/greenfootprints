@@ -232,7 +232,7 @@
                 btn.innerHTML = 'Saving...';
                 btn.disabled = true;
 
-                fetch('/footprint', {
+                fetch('{{ route('footprint.store') }}', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -8,9 +8,9 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- PWA Meta Tags -->
-        <link rel="manifest" href="/manifest.json">
+        <link rel="manifest" href="{{ asset('manifest.json') }}">
         <meta name="theme-color" content="#10b981">
-        <link rel="apple-touch-icon" href="/logo.jpeg">
+        <link rel="apple-touch-icon" href="{{ asset('logo.jpeg') }}">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -22,7 +22,7 @@
         <script>
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/sw.js');
+                    navigator.serviceWorker.register('{{ asset('sw.js') }}');
                 });
             }
         </script>
@@ -54,15 +54,15 @@
             }
         </style>
     </head>
-    <body class="font-sans antialiased w-full flex justify-center items-center sm:p-4 relative bg-slate-50">
+    <body class="font-sans antialiased w-full h-full flex justify-center items-center sm:p-4 relative bg-slate-50">
         <!-- Animated Background Elements -->
         <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-emerald-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob"></div>
         <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-2000"></div>
         <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-[100px] opacity-70 animate-blob animation-delay-4000"></div>
 
-        <div class="w-full max-w-[480px] h-[100dvh] sm:h-[85vh] bg-white/80 backdrop-blur-xl sm:rounded-[2.5rem] shadow-none sm:shadow-[0_20px_50px_rgba(8,_112,_184,_0.15)] relative z-10 flex flex-col overflow-hidden border border-white/50">
+        <div class="w-full max-w-[480px] h-full sm:h-[85vh] bg-white/80 backdrop-blur-xl sm:rounded-[2.5rem] shadow-none sm:shadow-[0_20px_50px_rgba(8,_112,_184,_0.15)] relative z-10 flex flex-col overflow-hidden sm:border sm:border-white/50">
             <!-- Page Content (scrollable) -->
-            <main class="flex-1 overflow-y-auto no-scrollbar pb-24 pt-8">
+            <main class="flex-1 overflow-y-auto no-scrollbar pb-24">
                 {{ $slot }}
             </main>
 
