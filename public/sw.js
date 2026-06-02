@@ -1,4 +1,4 @@
-const CACHE_NAME = 'green-footprints-v2';
+const CACHE_NAME = 'green-footprints-v4';
 const urlsToCache = [
     './',
     './logo.jpeg',
@@ -9,7 +9,6 @@ self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => {
-                // Use catch to prevent a single 404 from failing the entire install
                 return Promise.all(
                     urlsToCache.map(url => {
                         return cache.add(url).catch(error => {
@@ -22,11 +21,11 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
-    // For page navigations, go to the network first to handle redirects properly
+    // For page navigations, bypass the strict request object and fetch the URL directly.
+    // This allows the browser to naturally follow redirects (like / -> /login) without ERR_FAILED.
     if (event.request.mode === 'navigate') {
         event.respondWith(
-            fetch(event.request).catch(() => {
-                // If offline, try to return a cached index or offline page
+            fetch(event.request.url).catch(() => {
                 return caches.match('./');
             })
         );
